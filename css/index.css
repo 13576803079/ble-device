@@ -31,7 +31,7 @@ body {
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     font-family: STHeiti,Helvetica,HelveticaNeue,Droidsansfallback,Droid Sans,Dengxian,Segoe;
-	background-color:#f6f6f6
+	/* background-color:#f6f6f6 */
 }
 
 img {
@@ -82,12 +82,14 @@ html{
     text-align: center;
 }
 .footerBox{
-    position: fixed; /* 固定位置 */  
-    bottom: 0; /* 距离底部0px */  
-    left: 0; 
-    width: 100%; 
-    /* background-color: #4CAF50;  */
+    /* position: fixed; 
+    bottom: 0;
+    left: 0;  */
+    /* width: 100%;  */
     padding-bottom: 0.6rem;
+    position: absolute;
+    left: 1rem;
+    top: 6.7rem;
 }
 .button{
     width: 4rem;
@@ -115,12 +117,14 @@ html{
     background: #EFF2F4;
     min-height: 100vh;
 }
-#unlockPage h2{
+#unlockPage h2, #bluetoothPage h2{
     font-size: 0.32rem;
     color: #353B40;
     padding: 0.4rem;
     margin: 0;
-    
+}
+#bluetoothPage h2{
+    margin-top: 0.1rem;
 }
 .unlockContent{
     border: 1px solid;
@@ -171,7 +175,7 @@ html{
     margin-bottom: 1.4rem;
     
 }
-.locklyDesc{
+.locklyDesc, .connectPage{
     width: 6.6rem;
     height: 4.52rem;
     background: #e2e8ec;
@@ -184,6 +188,12 @@ html{
     padding: 0.6rem;
     box-sizing: border-box;
     margin: 0.4rem auto 0.8rem;
+}
+.connectPage{
+    background: #EFF2F4;
+    height: 10rem;
+    position: relative;
+    margin-top: 0.1rem;
 }
 .locklyDesc h3{
     width: 5.6rem;
@@ -232,10 +242,15 @@ html{
 
 .connectStatus{
     font-size: 0.32rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-weight: 500;
     background: #EFF2F4;
     padding-bottom: 0.2rem;
+}
+.connectStatus p{
+    margin-top: 0.4rem;
+    font-weight: 600;
+    font-size: 0.36rem;
 }
 
 
