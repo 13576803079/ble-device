@@ -129,9 +129,15 @@
         const $checkPassword = document.querySelector('.checkPassword')
         const $connectStatus = document.querySelector('.connectStatus')
         const $stage = document.querySelector('.stage')
+        let blueName = 'LOCKLYTB000083'
         function isIOS() {
             const userAgent = window.navigator.userAgent;
             return /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        }
+        function getPara(val){
+            var uri = window.location.search;
+            var re = new RegExp("" +val+ "=([^&?]*)", "ig");
+            return ( (uri.match(re))?(uri.match(re)[0].substr(val.length+1)):null );
         }
         function supportWebBluetooth() {
             if (!navigator.bluetooth && !isIOS()) {
@@ -145,8 +151,13 @@
                 $connectDeviceButton.style.display = "none";
                 // window.location = './download.html?btName=lockly'
             }
-            console.log(navigator.bluetooth ? 'support bluetooth' : 'not support bluetooth')
+            if(getPara('btName')){
+                blueName = getPara('btName')
+            }
+            console.log(getPara('btName'))
+            // console.log(navigator.bluetooth ? 'support bluetooth' : 'not support bluetooth')
         }
+        
         supportWebBluetooth()
         $startApp.addEventListener('click', function() {
             window.location.href = 'https://pgep001.lockly.com/access/oac?btName=lockly'
