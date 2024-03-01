@@ -34,6 +34,7 @@
         inputValue = code
         if(code.length == 4){
             $resultDesc.innerText = ''
+            // if(bluetoothDevice)
             connectToDevice()
         }else{
             $resultDesc.innerText = 'Please enter access code'
@@ -67,7 +68,10 @@
     function connectToDevice(){
         console.log('Initializing Bluetooth...', blueName);
         // bluetoothDevice = null
-        if(bluetoothDevice)return
+        if(bluetoothDevice){
+            writeOnCharacteristic(getWriteData(inputValue))
+            return
+        }
         navigator.bluetooth.requestDevice({
             filters: [{namePrefix: blueName}],
             optionalServices: [bleService]
