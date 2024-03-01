@@ -169,10 +169,7 @@
             $unlockPage.style.display = "none";
             $unlockSuccess.style.display = 'none'
             $stage.style.display = 'none'
-            if(isIOS()){
-                $connectDeviceButton.style.display = "none";
-                // window.location = './download.html?btName=lockly'
-            }
+            
             if(getPara('btName')){
                 blueName = getPara('btName')
             }
