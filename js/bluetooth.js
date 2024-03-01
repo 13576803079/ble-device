@@ -18,8 +18,13 @@
     var connectDeviceButton = document.getElementById('connectDeviceButton')
     var verifyButton = document.getElementById('verifyButton')
 
+    
     // Connect Button (search for BLE Devices only if BLE is available)
     connectDeviceButton.addEventListener('click', (event) => {
+        if(isIOS()){
+            window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
+            return
+        }
         if (isWebBluetoothEnabled()){
             connectToDevice();
         }else{
@@ -59,6 +64,7 @@
             // bleStateContainer.innerHTML = 'Connected to device ' + device.name;
             // bleStateContainer.style.color = "#24af37";
             device.addEventListener('gattservicedisconnected', onDisconnected);
+            $connectStatusImg.style.display = 'none'
             $connectStatus.innerText = '正在连接设备，请稍等一会'
             $stage.style.display = 'flex'
             retryToDevice()
@@ -119,6 +125,7 @@
             document.getElementById("unlockPage").style.display = "block";
             document.getElementById("bluetoothPage").style.display = "none";
             $connectStatus.innerText = ''
+            // $connectStatusImg.style.display = 'none'
             $stage.style.display = 'none'
         })
         .catch(error => {
@@ -164,7 +171,7 @@
             document.querySelector('.unlockSuccess').style.display = 'block'
             document.querySelector('.checkPassword').style.display = 'none'
         }else{
-            $resultDesc.innerText = '验证码错误，请重新输入！';
+            $resultDesc.innerText = 'Wrong password, please re-enter!';
         }
         // const newValueReceived = new TextDecoder().decode(event.target.value);
         // console.log("Characteristic value changed: ", newValueReceived);
@@ -264,10 +271,11 @@
             }
         } else {
             // Throw an error if Bluetooth is not connected
-            console.error("Bluetooth is not connected.");
+            // console.error("Bluetooth is not connected.");
             // window.alert("Bluetooth is not connected.")
         }
     }
+    disconnectDevice()
 
     function getWriteData(oacPw = '6354'){
         let writeValue = 'A1B2C3D4'
