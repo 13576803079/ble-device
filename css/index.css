@@ -229,3 +229,111 @@ html{
     height: auto;
     border-radius: 0.4rem;
 }
+
+.connectStatus{
+    font-size: 0.32rem;
+    margin-top: 2rem;
+    font-weight: 500;
+    background: #EFF2F4;
+    padding-bottom: 0.2rem;
+}
+
+
+
+.dot-pulse{
+    position: relative;
+    left: -9999px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    
+    box-shadow: 9999px 0 0 -5px;
+    animation: dot-pulse 1.5s infinite linear;
+    animation-delay: 0.25s;
+}
+/* .safetyDot .dot-pulse{
+    background-color: #2879D1;
+    color: #2879D1;
+} */
+.dot-pulse{
+    background-color: #62B5E5;
+    color: #62B5E5;
+}
+.dot-pulse::before {
+    box-shadow: 9964px 0 0 -5px;
+    animation: dot-pulse-before 1.5s infinite linear;
+    animation-delay: 0s;
+}
+.dot-pulse::after {
+    box-shadow: 10024px 0 0 -5px;
+    animation: dot-pulse-after 1.5s infinite linear;
+    animation-delay: 0.5s;
+}
+.dot-pulse::before,.dot-pulse::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    
+}
+.safetyDot .dot-pulse::before,.safetyDot .dot-pulse::after {
+    background-color: #2879D1;
+    color: #2879D1;
+}
+.dangerDot .dot-pulse::before,.dangerDot .dot-pulse::after{
+    background-color: #62B5E5;
+    color: #62B5E5;
+}
+@keyframes dot-pulse {
+    0% {
+        box-shadow: 9999px 0 0 -5px;
+    }
+    30% {
+        box-shadow: 9999px 0 0 2px;
+    }
+    60%, 100% {
+        box-shadow: 9999px 0 0 -5px;
+    }
+}
+@keyframes dot-pulse-before {
+    0% {
+        box-shadow: 9964px 0 0 -5px;
+    }
+    30% {
+        box-shadow: 9964px 0 0 2px;
+    }
+    60%, 100% {
+        box-shadow: 9964px 0 0 -5px;
+    }
+}
+@keyframes dot-pulse-after {
+    0% {
+        box-shadow: 10024px 0 0 -5px;
+    }
+    30% {
+        box-shadow: 10024px 0 0 2px;
+    }
+    60%, 100% {
+        box-shadow: 10024px 0 0 -5px;
+    }
+}
+
+.stage {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    padding: 5px 0 12px;
+    /* margin: 0 -5%; */
+    overflow: hidden;
+    background: #EFF2F4;
+}
