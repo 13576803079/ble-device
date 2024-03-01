@@ -191,9 +191,13 @@
         console.log('收到的数据(hex):', hexString.toLocaleUpperCase());
         verifyButton.classList.remove('disabledButton')
         verifyButton.innerText = 'Unlock'
+        
         if(isSuccessUnlock(hexString.toLocaleUpperCase())){
-            document.querySelector('.unlockSuccess').style.display = 'block'
-            document.querySelector('.checkPassword').style.display = 'none'
+            inputs.forEach(input => {
+                input.value = ''
+            })
+            // document.querySelector('.unlockSuccess').style.display = 'block'
+            // document.querySelector('.checkPassword').style.display = 'none'
         }else{
             $resultDesc.innerText = 'Wrong password, please re-enter!';
         }
