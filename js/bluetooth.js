@@ -17,19 +17,32 @@
 
     var connectDeviceButton = document.getElementById('connectDeviceButton')
     var verifyButton = document.getElementById('verifyButton')
+    const inputs = document.querySelectorAll('.code-input');
+    let inputValue = ''
 
     
     // Connect Button (search for BLE Devices only if BLE is available)
-    connectDeviceButton.addEventListener('click', (event) => {
-        if(isIOS()){
-            window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
-            return
-        }
-        if (isWebBluetoothEnabled()){
-            connectToDevice();
+    verifyButton.addEventListener('click', (event) => {
+        // if(isIOS()){
+        //     window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
+        //     return
+        // }
+        let code = '';
+        inputs.forEach(input => {
+            code += input.value;
+        })
+        inputValue = code
+        if(code.length == 4){
+            $resultDesc.innerText = ''
+            connectToDevice()
         }else{
-            alert('Unable to connect to the Bluetooth device. Please try again using Google Chrome or the default browser on your Samsung phone.');
+            $resultDesc.innerText = 'Please enter access code'
         }
+        // if (isWebBluetoothEnabled()){
+        //     connectToDevice();
+        // }else{
+        //     alert('Unable to connect to the Bluetooth device. Please try again using Google Chrome or the default browser on your Samsung phone.');
+        // }
     });
 
     // Disconnect Button
@@ -53,7 +66,8 @@
     // Connect to BLE Device and Enable Notifications
     function connectToDevice(){
         console.log('Initializing Bluetooth...', blueName);
-        bluetoothDevice = null
+        // bluetoothDevice = null
+        if(bluetoothDevice)return
         navigator.bluetooth.requestDevice({
             filters: [{namePrefix: blueName}],
             optionalServices: [bleService]
@@ -66,6 +80,8 @@
             device.addEventListener('gattservicedisconnected', onDisconnected);
             $connectStatusImg.style.display = 'none'
             $connectStatus.innerText = 'Connecting...'
+            verifyButton.innerText = 'Unlocking...'
+            verifyButton.classList.add('disabledButton')
             $stage.style.display = 'flex'
             retryToDevice()
             // return device.gatt.connect();
@@ -127,6 +143,7 @@
             $connectStatus.innerText = ''
             // $connectStatusImg.style.display = 'none'
             $stage.style.display = 'none'
+            writeOnCharacteristic(getWriteData(inputValue))
         })
         .catch(error => {
             console.log('Error: ', error);
@@ -144,6 +161,7 @@
                     retries = 0
                     $connectStatus.innerText = '连接设备失败，请离设备近一点再试一次'
                     $stage.style.display = 'none'
+                    bluetoothDevice = null
                     alert('Unable to connect to the Bluetooth device. Please try again.');
                 }
             }
@@ -167,6 +185,8 @@
         }
         console.log('收到的数据(bytes):', value);
         console.log('收到的数据(hex):', hexString.toLocaleUpperCase());
+        verifyButton.classList.remove('disabledButton')
+        verifyButton.innerText = 'Unlock'
         if(isSuccessUnlock(hexString.toLocaleUpperCase())){
             document.querySelector('.unlockSuccess').style.display = 'block'
             document.querySelector('.checkPassword').style.display = 'none'
