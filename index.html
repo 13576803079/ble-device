@@ -162,14 +162,22 @@
             return ( (uri.match(re))?(uri.match(re)[0].substr(val.length+1)):null );
         }
         function supportWebBluetooth() {
-            if (!navigator.bluetooth && !isIOS()) {
-                alert('Unable to connect to the Bluetooth device. Please try again using Google Chrome or the default browser on your Samsung phone.');
-                window.location.href = './download.html?btName=lockly'
+            if (navigator.bluetooth && !isIOS()) {
+                // alert('Unable to connect to the Bluetooth device. Please try again using Google Chrome or the default browser on your Samsung phone.');
+                // window.location.href = './download.html?btName=lockly'
+                $unlockPage.style.display = "block";
+                $bluetoothPage.style.display = "none";
+                $unlockSuccess.style.display = 'none'
+                return
             }
             $unlockPage.style.display = "none";
             $unlockSuccess.style.display = 'none'
             $stage.style.display = 'none'
-            
+            document.querySelector('.connectPage').style.display = 'block'
+            // if(isIOS()){
+            //     $connectDeviceButton.style.display = "none";
+            //     // window.location = './download.html?btName=lockly'
+            // }
             if(getPara('btName')){
                 blueName = getPara('btName')
             }
@@ -182,6 +190,10 @@
         //     window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
         // })
         $connectDeviceButton.addEventListener('click', function () {
+            // if(isIOS()){
+            //     window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
+            // }
+            window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
             // document.getElementById("unlockPage").style.display = "block";
             // document.getElementById("bluetoothPage").style.display = "none";
             // window.location.href = 'https://pgep001.lockly.com/access/oac?btName=1234'
@@ -222,21 +234,21 @@
             });
 
             // 绑定验证按钮点击事件
-            $verityButton.addEventListener('click', function () {
-                let code = '';
-                inputs.forEach(input => {
-                    code += input.value;
-                });
+            // $verityButton.addEventListener('click', function () {
+            //     let code = '';
+            //     inputs.forEach(input => {
+            //         code += input.value;
+            //     });
 
-                writeOnCharacteristic(getWriteData(code))
-                // if (verifyCode(code)) {
-                //     // document.getElementById('result').innerText = '验证码正确！';
-                //     $unlockSuccess.style.display = 'block'
-                //     $checkPassword.style.display = 'none'
-                // } else {
-                //     $resultDesc.innerText = '验证码错误，请重新输入！';
-                // }
-            });
+            //     writeOnCharacteristic(getWriteData(code))
+            //     // if (verifyCode(code)) {
+            //     //     // document.getElementById('result').innerText = '验证码正确！';
+            //     //     $unlockSuccess.style.display = 'block'
+            //     //     $checkPassword.style.display = 'none'
+            //     // } else {
+            //     //     $resultDesc.innerText = '验证码错误，请重新输入！';
+            //     // }
+            // });
         });
 
         // 验证函数
