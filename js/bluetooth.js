@@ -150,7 +150,7 @@
             let timeout = setTimeout(() => {
                 clearTimeout(timeout)
                 writeOnCharacteristic(getWriteData(inputValue))
-            }, 300)
+            }, 1000)
             
         })
         .catch(error => {
