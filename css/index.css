@@ -65,10 +65,6 @@ textarea {
     border: 1px solid #fff;
     border-radius: 0.08rem;
     background-color: #fff;
-    /* width: 40px;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px; */
 }
 body{
     font-family: STHeiti,Helvetica,HelveticaNeue,Droidsansfallback,Droid Sans,Dengxian,Segoe;
@@ -82,10 +78,6 @@ html{
     text-align: center;
 }
 .footerBox{
-    /* position: fixed; 
-    bottom: 0;
-    left: 0;  */
-    /* width: 100%;  */
     padding-bottom: 0.6rem;
     position: absolute;
     left: 1rem;
