@@ -1,5 +1,5 @@
     // import { crc8 } from './crc8'
-    var deviceName ='LOCKLY';
+    var deviceName ='LOCKLYTB000083';
     // var bleService = '19b10000-e8f2-537e-4f6c-d104768a1214';
     var bleService = '0000fff0-0000-1000-8000-00805f9b34fb'
     var ledCharacteristic = '0000fff1-0000-1000-8000-00805f9b34fb';
@@ -47,10 +47,10 @@
 
     // Connect to BLE Device and Enable Notifications
     function connectToDevice(){
-        console.log('Initializing Bluetooth...');
+        console.log('Initializing Bluetooth...', blueName);
         bluetoothDevice = null
         navigator.bluetooth.requestDevice({
-            filters: [{namePrefix: deviceName}],
+            filters: [{namePrefix: blueName}],
             optionalServices: [bleService]
         })
         .then(device => {
@@ -265,7 +265,7 @@
         } else {
             // Throw an error if Bluetooth is not connected
             console.error("Bluetooth is not connected.");
-            window.alert("Bluetooth is not connected.")
+            // window.alert("Bluetooth is not connected.")
         }
     }
 
