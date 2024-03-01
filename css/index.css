@@ -50,7 +50,7 @@ textarea {
 
 .code-box {
     display: inline-block;
-    margin-right: 0.4rem;
+    margin-right: 0.5rem;
 }
 .code-box:last-child{
     margin-right: 0;
