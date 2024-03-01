@@ -22,6 +22,8 @@
     connectDeviceButton.addEventListener('click', (event) => {
         if (isWebBluetoothEnabled()){
             connectToDevice();
+        }else{
+            alert('Unable to connect to the Bluetooth device. Please try again using Google Chrome or the default browser on your Samsung phone.');
         }
     });
 
@@ -57,6 +59,8 @@
             // bleStateContainer.innerHTML = 'Connected to device ' + device.name;
             // bleStateContainer.style.color = "#24af37";
             device.addEventListener('gattservicedisconnected', onDisconnected);
+            $connectStatus.innerText = '正在连接设备，请稍等一会'
+            $stage.style.display = 'flex'
             retryToDevice()
             // return device.gatt.connect();
         })
@@ -114,6 +118,8 @@
             console.log("Notifications Started.");
             document.getElementById("unlockPage").style.display = "block";
             document.getElementById("bluetoothPage").style.display = "none";
+            $connectStatus.innerText = ''
+            $stage.style.display = 'none'
         })
         .catch(error => {
             console.log('Error: ', error);
@@ -129,6 +135,8 @@
                     
                 } else {
                     retries = 0
+                    $connectStatus.innerText = '连接设备失败，请离设备近一点再试一次'
+                    $stage.style.display = 'none'
                     alert('Unable to connect to the Bluetooth device. Please try again.');
                 }
             }
