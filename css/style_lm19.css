@@ -1,0 +1,389 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display: block
+}
+
+ol,ul {
+    list-style: none
+}
+
+blockquote,q {
+    quotes: none
+}
+
+blockquote:before,blockquote:after,q:before,q:after {
+    content: '';
+    content: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+body {
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    font-family: STHeiti,Helvetica,HelveticaNeue,Droidsansfallback,Droid Sans,Dengxian,Segoe;
+	background-color:#f6f6f6
+}
+
+img {
+    border: none
+}
+
+input,select,textarea,button {
+    outline: none;
+    border: none;
+    background: none
+}
+
+textarea {
+    resize: none
+}
+/*
+a {
+    text-decoration: none;
+    color: #656565
+}
+*/
+
+.app_url{
+	color: blue
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.clearfix {
+    zoom:1;clear: both
+}
+
+.tc {
+    text-align: center
+}
+
+.tr {
+    text-align: right
+}
+
+.tl {
+    text-align: left
+}
+
+.wrapper {
+    width: 7.5rem;
+    height: 19.47rem;
+    margin: auto;
+    background: url(../img/beijing@2x.png) no-repeat center;
+    background-size: 7.5rem 19.83rem;
+    font-size: 14px;
+    padding-top: .36rem
+}
+
+.wrappera {
+    width: 13.8rem;
+    height: 18rem;
+    margin: auto;
+    background: url(../img/bk_layer_l.png) no-repeat top;
+    background-size: 13.8rem 4rem;
+    font-size: 16px;
+    padding-top: .36rem;
+    /* background-color: #fff; */
+}
+
+.wrapperb {
+    width: 13.8rem;
+    height: 18rem;
+    margin: auto;
+    background: url(../img/bk_layer_ldt.png) no-repeat top;
+    background-size: 13.8rem 8.5rem;
+    font-size: 16px;
+    padding-top: .36rem;
+    background-color: #fff;
+}
+
+.code {
+    width: 10.54rem;
+    height: 2rem;
+    background-color: #fff;
+    margin: auto;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+}
+
+.code h1 {
+    font-size: .4rem;
+    color: #157df5;
+    height: .7rem;
+    line-height: .54rem;
+    border-bottom: 1px dashed #c3c3c3;
+    padding-left: .3rem;
+    padding-top: .1rem;
+    font-weight: normal;
+}
+
+.download_btn {
+    display: block;
+    width: 7.2rem;
+    height: 1.5rem;
+    background: url(../img/dl_lockly.png) center no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+
+.code .num {
+    font-size: .7rem;
+    color: #157df5;
+    padding-top: .2rem;
+    font-weight: bold;
+}
+
+.deadline {
+    font-size: .32rem;
+    color: #fff;
+    margin: .3rem 1rem 2rem 1rem;
+    text-align: center;
+}
+
+.desc {
+    font-size: .6rem;
+    color: #4f4f4f;
+    line-height: .2rem;
+    margin-top: 1.4rem;
+}
+
+figure {
+    width: 6.86rem;
+    height: 7.14rem;
+    margin: 0 auto .6rem
+}
+
+figure img {
+    width: 6.86rem;
+    height: 7.14rem
+}
+
+.desc_list {
+    width: 13rem;
+}
+
+.desc_list li {
+    font-size: .42rem;
+    color: #5e5b5c;
+    float: left;
+    margin-top: 0.2rem;
+    margin-bottom: .2rem;
+    padding-left: 1.5rem;
+    text-indent: -0.5rem;
+}
+
+.desc_list li .gou_icon {
+    vertical-align: -3px;
+    margin-right: .1rem
+}
+/*
+.desc_list li:first-child {
+    width: 100%
+}
+
+.desc_list li:last-child {
+    text-indent: .43rem
+}
+*/
+.fc_bg {
+    background-color: #fff;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+    opacity: .9;
+    margin-top: .1rem;
+}
+
+.fc_introduction {
+    width: 13.8rem;
+    height: 3.5rem;
+    text-align: center;
+}
+
+.fc_introduction p {
+    font-size: .28rem;
+    color: #fff;
+    line-height: .55rem;
+    padding: .2rem
+}
+
+.fc_note {
+    width: 13.4rem;
+    height: 2.6rem;
+    margin-left: .2;
+}
+
+.fc_note p {
+    font-size: .4rem;
+    color: #999999;
+    line-height: .25rem;
+    padding-top: .2rem;
+    padding-left: .6rem;
+}
+
+.footer {
+    position: fixed;
+	left: auto;
+    right: auto;
+    bottom: 0;
+    width: 7.5rem;
+    height: 1.11rem;
+    background-size: contain;    
+    background-color: #f6f6f6	
+}
+
+.footer .Download_txt {
+    font-size: .3rem;
+    color: #000;
+    margin-top: .46rem
+}
+
+.footer a {
+    display: block;
+    text-indent: 9999
+}
+
+.gou_icon {
+    display: inline-block;
+    width: .36rem;
+    height: .36rem;
+    background: url(../img/gou.png) center no-repeat;
+    background-size: contain
+}
+
+.desc_list li .guide_icon_one {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+
+.desc_list li .guide_icon_two {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+
+.desc_list li .guide_icon_three {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+.guide_icon_one {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    background: url(../img/blue_one.png) left no-repeat;
+    background-size: contain;
+}
+
+.guide_icon_two {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    background: url(../img/blue_two.png) left no-repeat;
+    background-size: contain;
+}
+
+.guide_icon_three {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    background: url(../img/blue_three.png) left no-repeat;
+    background-size: contain;
+}
+
+.desc_list li .note_icon_one {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+
+.desc_list li .note_icon_two {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+
+.desc_list li .guide_icon_three {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+
+.note_icon_one {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    background: url(../img/ntone.png) left no-repeat;
+    background-size: contain;
+}
+
+.note_icon_two {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    background: url(../img/nttwo.png) left no-repeat;
+    background-size: contain;
+}
+
+.google_btn {
+    display: block;
+    width: 2.74rem;
+    height: .97rem;
+    background: url(../img/Google-Play.png) center no-repeat;
+    background-size: cover;
+    margin: auto
+}
+
+.open_app_btn {
+    display: block;
+    width: 5.6rem;
+    height: 1.4rem;
+    background: url(../img/open_lk_app.png) center no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+
+.buy_btn {
+    display: block;
+    width: 100%;
+	height: 100%;	
+    background: url(../img/buy_banner.png) center no-repeat;
+    background-size: contain;
+    /*margin: auto*/
+}
+
+.wechat_guide{
+    width:100px;
+    height:40px;
+    float: right;
+    background:#000000;
+    position:relative;
+    z-index:100;
+    filter:alpha(Opacity=80);
+    -moz-opacity:0.5;
+    opacity: 0.2;
+}
+
+.app_title {font-size: .6rem;color: #157df5;line-height: .6rem;margin-top: 9.2rem;}
+
+.app_desc {
+    font-size: .4rem;
+    color: #b1b1b1;
+    line-height: .6rem;
+}
+
+.empty_space {
+    font-size: .3rem;
+    height: 0.8rem;
+}

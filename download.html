@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="apple-touch-icon" href="" />
+		<link rel="apple-touch-startup-image" href="" />
+		<title>Lockly Secure Smart Lock</title>
+		<link rel="stylesheet" href="css/style_l07.css" title="default"/>
+		<link rel="alernate stylesheet" href="css/style_lm19.css" title="iPad"/>
+		<script type="text/javascript" src="js/jquery-2.1.3.min.js" ></script>
+		<script type="text/javascript" src="js/resize.js" ></script>
+		<script type="text/javascript" src="js/lchlk_09.js" ></script>
+		<style>
+		.none { display: none; }
+		.we_guide{width:2.8rem;height:1rem;position:absolute;right:0px;top:0px;z-index:100;filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;}
+        .guide_img{width:auto;height:auto;max-width:100%;max-height:100%;z-index:100;}
+        .date{box-shadow: 0px 4px 16px 0px rgba(206, 206, 206, 0.4);border-radius: 4px;padding-top: 0.38rem;padding-bottom: 0.46rem;width: 7.2rem;margin: 0.5rem auto 0;background-color: #fff;}
+        .recurring{color: #157df5;font-size: 0.36rem;margin-bottom: 0.42rem}
+        .start_end{color: #5e5b5c;font-size: 0.28rem;}
+        .start_time{margin-right: 0.2rem;font-weight: inherit;}
+        #start{margin-right: 0.4rem;}
+		</style>
+    <title>ekey-ui</title>
+  </head>
+  <body>
+      <div id="wechat_guide" class="we_guide"><img class="guide_img" id="guide_img" src="image/tip_android.png"></div>
+      <div class="wrappera">
+            <article class="fc_introduction fc_bg">
+            <ul class="desc_list clearfix">
+            <li><i class="guide_icon_box">1</i><a href="#" id="download-app-link" class="app_url">Download</a> the Lockly Secure Smart Lock APP</li>
+            <li><i class="guide_icon_box">2</i>Click the 'Copy eBadge' button above</li>
+            <li>
+              <i class="guide_icon_box">3</i>
+              
+              <div class="fl" style="overflow: hidden;width: 6.2rem;line-height: 0.36rem;">
+                <span class="fl">Open LOCKLY app, click the </span> 
+                <img class="fl" src="./img/app_icon.svg" style="margin-top: -0.07rem;" alt="" />
+                <span> icon on the top</span>
+                <span class="fl">left corner in the app</span>
+              </div>
+              
+            </li>
+            <li>
+              <div class="fl guide_icon_box">4</div>
+              <div class="fl" style="width: 6.2rem;">Select I Received an Access to paste the eBadge you copied and click the 'Ok' button</div> 
+            </li>
+            <li>
+              <div class="fl guide_icon_box">5</div>
+              <div class="fl" style="width: 6.2rem;">You will then see your virtual eBadge-enabled lock displayed in the app. Click it and you can then control lock and view any message left for you.</div> 
+              
+            </li>
+          </ul>
+          </article>
+
+          <div class="open_app">
+            <p>Alternatively, you can open this page in a browser once you have the LOCKLY app and click the button below to have your eBadge automatically copied and pasted to the app.</p>
+            <span id="open-app-link" class="open_app_btn">Launch LOCKLY App from Browser</span>
+          </div>
+              
+              <br/>
+        <article class="fc_note fc_bg">
+          <p>
+            *Note
+          </p>
+          <div>
+            If you already have the LOCKLY app, you may copy and paste the eBadge to the app directly.
+          </div>
+            <!-- <p>Note:</p>
+            <ul class="desc_list clearfix">
+            <li><i class="note_icon_one"></i>Please make sure to open this page from your system browser;</li>
+            <li class="last_list"><i class="note_icon_two"></i>If you have the Lockly Secure Smart Lock App, you may copy the eKey and paste in the App directly;</li> -->
+          </ul>
+        </article>
+      </div>
+    <!-- <noscript>
+      <strong>We're sorry but ekey-ui doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript> -->
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

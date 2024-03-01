@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分格验证码输入框</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/resize.js"></script>
+    <script type="text/javascript" src="./js/crc8.js"></script>  
+    
+    <!-- <script type="text/javascript" src="js/lchlk_09.js"></script> -->
+</head>
+
+<body>
+    <div id="bluetoothPage">
+        <div class="footerBox">
+            <a class="button" id="connectDeviceButton" style="margin-bottom: 0.2rem;">连接设备</a>
+            <a class="button" id="startApp">启动app</a>
+        </div>
+        
+    </div>
+    <div id="unlockPage">
+        <h2 class="tc">Page Title</h2>
+        <div class="unlockContent">
+            <div class="checkPassword">
+                <div class="unlockDesc">Enter the 4 digit access code and click Confirm to unlock.</div>
+                <div class="code-inputs">
+                    <!-- 创建4个独立的输入框 -->
+                    <div class="code-box"><input type="text" maxlength="1" class="code-input" data-next="input2"></div>
+                    <div class="code-box"><input id="input2" type="text" maxlength="1" class="code-input" data-next="input3"
+                            data-previous="input1"></div>
+                    <div class="code-box"><input id="input3" type="text" maxlength="1" class="code-input" data-next="input4"
+                            data-previous="input2"></div>
+                    <div class="code-box"><input id="input4" type="text" maxlength="1" class="code-input"
+                            data-previous="input3"></div>
+                </div>
+                <div id="result" class="tc"></div>
+                <div class="tc" style="margin-bottom: 0.6rem;">   
+                    <p class="confirmDesc">Click Confirm to unlock access.</p>
+                    <button class="button" id="verifyButton" style="margin-bottom: 0.2rem">Confirm</button>
+                    <button class="button" id="backButton">返回</button>
+                </div>
+            </div>
+            
+            <div class="unlockSuccess">
+                <div class="successImg">
+                    <img src="./img/pic_Successful.png" alt="">
+                </div>
+                <p class="tc">Successful unlocking!</p>
+            </div>
+        </div>
+
+        <div class="deviceImg">
+            <img src="./img/pic_h5.png" alt="">
+        </div>
+
+        <div class="locklyDesc">
+            <h3>Download Lockly app for even more convenience</h3>
+            <div class="functionDesc">
+                <div class="functionList">
+                    <div class="functionImg">
+                        <img src="./img/ic_Scan-to-Open.png" alt="">
+                    </div>
+                    <div class="functionName tc">
+                        Scan-to-Open
+                    </div>
+                </div>
+                <div class="functionList">
+                    <div class="functionImg">
+                        <img src="./img/ic_eKeys.png" alt="">
+                    </div>
+                    <div class="functionName tc">
+                        eKeys & codes
+                    </div>
+                </div>
+                <div class="functionList">
+                    <div class="functionImg">
+                        <img src="./img/ic_Air Transfer.png" alt="">
+                    </div>
+                    <div class="functionName tc">
+                        Air Transfer
+                    </div>
+                </div>
+                <div class="functionList">
+                    <div class="functionImg">
+                        <img src="./img/ic_Welcome Mode.png" alt="">
+                    </div>
+                    <div class="functionName tc">
+                        Welcome Mode
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        
+    </div>
+
+
+    <script>
+        // fetch('https://i.maoyan.com/api/mmdb/movie/v3/list/hot.json?ct=%E6%B7%B1%E5%9C%B3&ci=30&channelId=4')  
+        // .then(response => {  
+        //     if (!response.ok) {  
+        //         throw new Error('Network response was not ok');  
+        //     }  
+        //     return response.json();  
+        // })  
+        // .then(data => {  
+        //     console.log(data); // 处理返回的数据  
+        // })  
+        // .catch(error => {  
+        //     console.error('There was a problem with the fetch operation:', error);  
+        // });
+        const $connectDeviceButton = document.getElementById('connectDeviceButton')
+        const $startApp = document.getElementById('startApp')
+        const $bluetoothPage = document.getElementById('bluetoothPage')
+        const $unlockPage = document.getElementById('unlockPage')
+        const $backButton = document.getElementById('backButton')
+        const $verityButton = document.getElementById('verifyButton')
+        const $resultDesc = document.getElementById('result')
+        const $unlockSuccess = document.querySelector('.unlockSuccess')
+        const $checkPassword = document.querySelector('.checkPassword')
+        function isIOS() {
+            const userAgent = window.navigator.userAgent;
+            return /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        }
+        function supportWebBluetooth() {
+            if (!navigator.bluetooth) {
+                window.location.href = '/download.html?btName=lockly'
+            }
+            $unlockPage.style.display = "none";
+            $unlockSuccess.style.display = 'none'
+            if(isIOS()){
+                $connectDeviceButton.style.display = "none";
+                // window.location = './download.html?btName=lockly'
+            }
+            console.log(navigator.bluetooth ? 'support bluetooth' : 'not support bluetooth')
+        }
+        supportWebBluetooth()
+        $startApp.addEventListener('click', function() {
+            window.location.href = 'https://pgep001.lockly.com/access/oac?btName=lockly'
+        })
+        $connectDeviceButton.addEventListener('click', function () {
+            // document.getElementById("unlockPage").style.display = "block";
+            // document.getElementById("bluetoothPage").style.display = "none";
+            // window.location.href = 'https://pgep001.lockly.com/access/oac?btName=1234'
+        });
+        $backButton.addEventListener('click', function () {
+            $unlockPage.style.display = "none";
+            $bluetoothPage.style.display = "block";
+            disconnectDevice()
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // 获取所有验证码输入框
+            const inputs = document.querySelectorAll('.code-input');
+
+            // 为每个输入框添加事件监听
+            inputs.forEach((input, idx) => {
+                input.addEventListener('keyup', function (e) {
+                    // 如果当前输入框有值，并且不是最后一个输入框，则跳转到下一个输入框
+                    if (input.value.length === 1) {
+                        const nextInput = inputs[idx + 1];
+                        if (nextInput) {
+                            nextInput.focus();
+                        }
+                    }
+
+                    // 如果按下Backspace键，并且当前输入框无值，则跳转到上一个输入框
+                    if (e.key === 'Backspace' && input.value.length === 0) {
+                        const prevInput = inputs[idx - 1];
+                        if (prevInput) { // 只有非第一个输入框才处理
+                            prevInput.focus();
+                        }
+                    }
+                });
+            });
+
+            // 绑定验证按钮点击事件
+            $verityButton.addEventListener('click', function () {
+                let code = '';
+                inputs.forEach(input => {
+                    code += input.value;
+                });
+
+                if (verifyCode(code)) {
+                    // document.getElementById('result').innerText = '验证码正确！';
+                    $unlockSuccess.style.display = 'block'
+                    $checkPassword.style.display = 'none'
+                } else {
+                    $resultDesc.innerText = '验证码错误，请重新输入！';
+                }
+            });
+        });
+
+        // 验证函数
+        function verifyCode(code) {
+            var codePattern = /^\d{4}$/;
+            return codePattern.test(code);
+        }
+    </script>
+    <script type="text/javascript" src="js/bluetooth.js"></script>
+</body>
+
+</html>
