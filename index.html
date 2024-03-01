@@ -151,6 +151,10 @@
         $backButton.addEventListener('click', function () {
             $unlockPage.style.display = "none";
             $bluetoothPage.style.display = "block";
+            const inputs = document.querySelectorAll('.code-input');
+            inputs.forEach(input => {
+                input.value = ''
+            })
             disconnectDevice()
         });
         document.addEventListener('DOMContentLoaded', function () {
@@ -185,13 +189,14 @@
                     code += input.value;
                 });
 
-                if (verifyCode(code)) {
-                    // document.getElementById('result').innerText = '验证码正确！';
-                    $unlockSuccess.style.display = 'block'
-                    $checkPassword.style.display = 'none'
-                } else {
-                    $resultDesc.innerText = '验证码错误，请重新输入！';
-                }
+                writeOnCharacteristic(getWriteData(code))
+                // if (verifyCode(code)) {
+                //     // document.getElementById('result').innerText = '验证码正确！';
+                //     $unlockSuccess.style.display = 'block'
+                //     $checkPassword.style.display = 'none'
+                // } else {
+                //     $resultDesc.innerText = '验证码错误，请重新输入！';
+                // }
             });
         });
 
