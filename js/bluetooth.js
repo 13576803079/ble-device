@@ -29,7 +29,7 @@
     // disconnectButton.addEventListener('click', disconnectDevice);
 
     // Write to the ESP32 LED Characteristic
-    verifyButton.addEventListener('click', () => writeOnCharacteristic(getWriteData()));
+    // verifyButton.addEventListener('click', () => writeOnCharacteristic(getWriteData()));
     // offButton.addEventListener('click', () => writeOnCharacteristic('A1'));
 
     // Check if BLE is available in your Browser
@@ -155,6 +155,8 @@
         if(isSuccessUnlock(hexString.toLocaleUpperCase())){
             document.querySelector('.unlockSuccess').style.display = 'block'
             document.querySelector('.checkPassword').style.display = 'none'
+        }else{
+            $resultDesc.innerText = '验证码错误，请重新输入！';
         }
         // const newValueReceived = new TextDecoder().decode(event.target.value);
         // console.log("Characteristic value changed: ", newValueReceived);
@@ -262,7 +264,7 @@
     function getWriteData(oacPw = '6354'){
         let writeValue = 'A1B2C3D4'
         writeValue = addCrc8ToLast(`A1B2C3D41500A108ACACAABBCCDDEEFF${stringToHexString(oacPw)}`) 
-        console.log(writeValue, `A1B2C3D41500A108ACACAABBCCDDEEFF${stringToHexString(oacPw)}`, addCrc8ToLast('A1B2C3D40A000AA100'))
+        return writeValue
     }
 
     function getUtf8ByteLength(str) {  
@@ -315,8 +317,8 @@
         return result;
     }
       
-    getWriteData()
-    console.log(isSuccessUnlock())
+    // getWriteData()
+    // console.log(isSuccessUnlock())
     // console.log(getHexByteLength(`A1B2C3D416108ACACAABBCCEEFF01020304`))
     // // const data = "Hello";  
     // const checksum = addCrc8ToLast('16108ACACAABBCCEEFF01020304');  
