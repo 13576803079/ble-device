@@ -147,7 +147,11 @@
             $connectStatus.innerText = ''
             // $connectStatusImg.style.display = 'none'
             $stage.style.display = 'none'
-            writeOnCharacteristic(getWriteData(inputValue))
+            let timeout = setTimeout(() => {
+                clearTimeout(timeout)
+                writeOnCharacteristic(getWriteData(inputValue))
+            }, 300)
+            
         })
         .catch(error => {
             console.log('Error: ', error);
