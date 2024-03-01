@@ -128,7 +128,7 @@
             return /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
         }
         function supportWebBluetooth() {
-            if (!navigator.bluetooth && !isIOS()) {
+            if (!navigator.bluetooth) {
                 window.location.href = './download.html?btName=lockly'
             }
             $unlockPage.style.display = "none";
