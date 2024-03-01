@@ -65,7 +65,7 @@
             // bleStateContainer.style.color = "#24af37";
             device.addEventListener('gattservicedisconnected', onDisconnected);
             $connectStatusImg.style.display = 'none'
-            $connectStatus.innerText = '正在连接设备，请稍等一会'
+            $connectStatus.innerText = 'Connecting'
             $stage.style.display = 'flex'
             retryToDevice()
             // return device.gatt.connect();
