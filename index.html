@@ -15,6 +15,10 @@
 
 <body>
     <div id="bluetoothPage">
+        <div class="connectStatus tc"></div>
+        <div class="stage dangerDot">  
+            <div class="dot-pulse"></div>
+        </div>
         <div class="footerBox">
             <a class="button" id="connectDeviceButton" style="margin-bottom: 0.2rem;">连接设备</a>
             <a class="button" id="startApp">启动app</a>
@@ -123,16 +127,20 @@
         const $resultDesc = document.getElementById('result')
         const $unlockSuccess = document.querySelector('.unlockSuccess')
         const $checkPassword = document.querySelector('.checkPassword')
+        const $connectStatus = document.querySelector('.connectStatus')
+        const $stage = document.querySelector('.stage')
         function isIOS() {
             const userAgent = window.navigator.userAgent;
             return /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
         }
         function supportWebBluetooth() {
-            if (!navigator.bluetooth) {
+            if (!navigator.bluetooth && !isIOS()) {
+                alert('Unable to connect to the Bluetooth device. Please try again using Google Chrome or the default browser on your Samsung phone.');
                 window.location.href = './download.html?btName=lockly'
             }
             $unlockPage.style.display = "none";
             $unlockSuccess.style.display = 'none'
+            $stage.style.display = 'none'
             if(isIOS()){
                 $connectDeviceButton.style.display = "none";
                 // window.location = './download.html?btName=lockly'
@@ -155,6 +163,7 @@
             inputs.forEach(input => {
                 input.value = ''
             })
+            $resultDesc.innerText = ''
             disconnectDevice()
         });
         document.addEventListener('DOMContentLoaded', function () {
