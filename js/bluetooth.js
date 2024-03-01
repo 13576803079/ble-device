@@ -150,7 +150,6 @@
             let timeout = setTimeout(() => {
                 clearTimeout(timeout)
                 writeOnCharacteristic(getWriteData(inputValue))
-                alert('123')
             }, 1000)
             
         })
