@@ -28,6 +28,10 @@ function inputNumber(num) {
     // }
 }
 
+// document.querySelector('.key').addEventListener('touchstart', function(e) {  
+//     e.preventDefault();  
+// })
+
 function confirmNumber() {
     if(password.length < 4){
 
@@ -57,6 +61,8 @@ function clearPassword(){
         input.textContent = ''
     })
     password = ''
+    currentInputIndex = 1
+    isFull = false
 }
 
 function checkKeyboardStatus() {
