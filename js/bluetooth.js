@@ -27,12 +27,12 @@
         //     window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
         //     return
         // }
-        let code = '';
-        inputs.forEach(input => {
-            code += input.value;
-        })
-        inputValue = code
-        if(code.length == 4){
+        // let code = '';
+        // inputs.forEach(input => {
+        //     code += input.value;
+        // })
+        // inputValue = code
+        if(password.length == 4){
             $resultDesc.innerText = ''
             // if(bluetoothDevice)
             connectToDevice()
@@ -69,24 +69,55 @@
         console.log('Initializing Bluetooth...', blueName);
         // bluetoothDevice = null
         if(bluetoothDevice){
-            writeOnCharacteristic(getWriteData(inputValue))
+            writeOnCharacteristic(getWriteData(password))
             return
         }
+        // if(window.localStorage.getItem(blueName) && navigator.bluetooth.getDevices){
+        //     navigator.bluetooth.getDevices()
+        //     .then(devices => {
+        //         // 在返回的已知设备列表中找到我们保存的那个设备
+        //         const deviceToConnect = devices.find(device => device.id === window.localStorage.getItem(blueName));
+
+        //         if (deviceToConnect) {
+        //             bluetoothDevice = deviceToConnect
+        //             bluetoothDevice.addEventListener('gattservicedisconnected', onDisconnected);
+        //             $connectStatusImg.style.display = 'none'
+        //             $connectStatus.innerText = 'Connecting...'
+        //             $verifyBtnLoading.style.display = 'inline-block'
+        //             $verifyBtnText.innerText = 'Unlocking...'
+        //             verifyButton.classList.add('disabledButton')
+        //             $stage.style.display = 'flex'
+        //             retryToDevice()
+        //             return
+        //         } else {
+        //             bluetoothDevice = null
+        //             console.error('Previously connected bluetooth device not found.');
+        //             // 可以再次调用 requestDevice 来让用户选择设备
+        //         }
+        //     })
+        //     return
+        // }
+        // navigator.bluetooth.getDevices().then(
+        //     deviceList => {
+        //         console.log(deviceList)
+        //     }
+        // )
+        
         navigator.bluetooth.requestDevice({
             filters: [{namePrefix: blueName}],
             optionalServices: [bleService]
         })
         .then(device => {
-            console.log('Device Selected:', device.name);
+            console.log('Device Selected:', device.name, device, JSON.stringify(device));
             bluetoothDevice = device
+            window.localStorage.setItem(blueName, device.id)
             // bleStateContainer.innerHTML = 'Connected to device ' + device.name;
             // bleStateContainer.style.color = "#24af37";
             device.addEventListener('gattservicedisconnected', onDisconnected);
-            $connectStatusImg.style.display = 'none'
-            $connectStatus.innerText = 'Connecting...'
-            verifyButton.innerText = 'Unlocking...'
-            verifyButton.classList.add('disabledButton')
-            $stage.style.display = 'flex'
+            // $connectStatusImg.style.display = 'none'
+            // $connectStatus.innerText = 'Connecting...'
+            handleVerityLoading(true, 'Pairing...')
+            // $stage.style.display = 'flex'
             retryToDevice()
             // return device.gatt.connect();
         })
@@ -124,6 +155,20 @@
         
     }
 
+    function handleVerityLoading(loading, status){
+        if(loading){
+            // $verifyBtnLoading.style.display = 'inline-block'
+            $verifyBtnText.innerText = status
+            verifyButton.classList.add('disabledButton')
+            $modal.style.display = 'block'
+        }else{
+            // $verifyBtnLoading.style.display = 'none'
+            $modal.style.display = 'none'
+            verifyButton.classList.remove('disabledButton')
+            $verifyBtnText.innerText = 'Unlock'
+        }
+    }
+
     function retryToDevice(){
         return bluetoothDevice.gatt.connect()
         .then(gattServer =>{
@@ -142,15 +187,22 @@
             characteristic.addEventListener('characteristicvaluechanged', handleCharacteristicChange);
             characteristic.startNotifications();
             console.log("Notifications Started.");
-            document.getElementById("unlockPage").style.display = "block";
-            document.getElementById("bluetoothPage").style.display = "none";
-            $connectStatus.innerText = ''
+            // document.getElementById("unlockPage").style.display = "block";
+            // document.getElementById("bluetoothPage").style.display = "none";
+            // $connectStatus.innerText = ''
+            // handleVerityLoading(false)
             // $connectStatusImg.style.display = 'none'
-            $stage.style.display = 'none'
+            // $stage.style.display = 'none'
+            handleVerityLoading(true, 'Unlocking...')
             let timeout = setTimeout(() => {
                 clearTimeout(timeout)
-                writeOnCharacteristic(getWriteData(inputValue))
+                writeOnCharacteristic(getWriteData(password))
             }, 1000)
+
+            let timeoutFinish = setTimeout(() => {
+                clearTimeout(timeoutFinish)
+                handleVerityLoading(false)
+            }, 10000)
             
         })
         .catch(error => {
@@ -167,9 +219,10 @@
                     
                 } else {
                     retries = 0
-                    $connectStatus.innerText = '连接设备失败，请离设备近一点再试一次'
-                    $stage.style.display = 'none'
+                    // $connectStatus.innerText = '连接设备失败，请离设备近一点再试一次'
+                    // $stage.style.display = 'none'
                     bluetoothDevice = null
+                    handleVerityLoading(false)
                     alert('Unable to connect to the Bluetooth device. Please try again.');
                 }
             }
@@ -193,18 +246,16 @@
         }
         console.log('收到的数据(bytes):', value);
         console.log('收到的数据(hex):', hexString.toLocaleUpperCase());
-        verifyButton.classList.remove('disabledButton')
-        verifyButton.innerText = 'Unlock'
+        handleVerityLoading(false)
         
         if(isSuccessUnlock(hexString.toLocaleUpperCase())){
-            inputs.forEach(input => {
-                input.value = ''
-            })
+            
             // document.querySelector('.unlockSuccess').style.display = 'block'
             // document.querySelector('.checkPassword').style.display = 'none'
         }else{
             $resultDesc.innerText = 'Wrong password, please re-enter!';
         }
+        clearPassword()
         // const newValueReceived = new TextDecoder().decode(event.target.value);
         // console.log("Characteristic value changed: ", newValueReceived);
         // retrievedValue.innerHTML = hexString;
@@ -212,7 +263,6 @@
     }
 
     function isSuccessUnlock(value = 'A1B2C3D40A000AA1009F'){
-        console.log(value.substring(16, 18))
         return value.substring(16, 18) == '00' ? true : false
     }
 
@@ -275,7 +325,9 @@
                 console.error("Error writing to the LED characteristic: ", error);
             });
         } else {
+            bluetoothDevice = null
             console.error ("Bluetooth is not connected. Cannot write to characteristic.")
+            // connectToDevice()
             // window.alert("Bluetooth is not connected. Cannot write to characteristic. \n Connect to BLE first!")
         }
     }
