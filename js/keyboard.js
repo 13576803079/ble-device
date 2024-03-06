@@ -63,6 +63,7 @@ function clearPassword(){
     password = ''
     currentInputIndex = 1
     isFull = false
+    checkKeyboardStatus()
 }
 
 function checkKeyboardStatus() {
