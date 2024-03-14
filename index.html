@@ -23,6 +23,32 @@
             </div>
         </div>  
     </div>  
+    <div class="dialog-warpper">
+        <div class="dialog">
+            <div class="connectError" style="display: none;">
+                <h2>Bluetooth Connection Unsuccessful</h2>
+                <div class="errorDesc">Please ensure your phone’s Bluetooth is turned on and try again.</div>
+                <div class="actionBtn">
+                    <span class="reconnectBtn" onclick="retryAction()">Reconnect</span>
+                </div>
+            </div>
+
+            <div class="communicationError" style="display: none;">
+                <div class="errorDesc">Communication with the lock failed. Please try again.</div>
+                <div class="actionBtn">
+                    <span class="reconnectBtn" onclick="retryAction()">Try Again</span>
+                </div>
+            </div>
+
+            <div class="connectLost" style="display: none;">
+                <div class="errorDesc">Bluetooth connection with the lock has been lost. Please reconnect.</div>
+                <div class="actionBtn">
+                    <span class="reconnectBtn" onclick="retryAction()">Reconnect</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 
     <div id="bluetoothPage">
         <h2 class="tc">Lockly Virtual Keypad</h2>
@@ -39,7 +65,6 @@
             </div>
             <div class="footerBox">
                 <a class="button" id="connectDeviceButton" style="margin-bottom: 0.2rem;">Connect Device</a>
-                <!-- <a class="button" id="startApp">启动app</a> -->
             </div>
         </div>
         
@@ -158,19 +183,7 @@
 
 
     <script>
-        // fetch('https://i.maoyan.com/api/mmdb/movie/v3/list/hot.json?ct=%E6%B7%B1%E5%9C%B3&ci=30&channelId=4')  
-        // .then(response => {  
-        //     if (!response.ok) {  
-        //         throw new Error('Network response was not ok');  
-        //     }  
-        //     return response.json();  
-        // })  
-        // .then(data => {  
-        //     console.log(data); // 处理返回的数据  
-        // })  
-        // .catch(error => {  
-        //     console.error('There was a problem with the fetch operation:', error);  
-        // });
+        
         const $connectDeviceButton = document.getElementById('connectDeviceButton')
         const $startApp = document.getElementById('startApp')
         const $bluetoothPage = document.getElementById('bluetoothPage')
@@ -188,16 +201,32 @@
         const $modal = document.getElementById('myModal')
         let blueName = 'LOCKLYTB000083'
         
+        fetch('http://192.168.1.50:8086/api/getDvInfoByKeypadSn', {
+            method: 'POST', 
+            headers: {  
+                'Content-Type': 'application/json',  
+            },  
+            body: JSON.stringify({sn: 'VK:ARQJNM1WW5WEJT152TBHQ6'}),  
+        })  
+        .then(response => {  
+            if (!response.ok) {  
+                throw new Error('Network response was not ok');  
+            }  
+            return response.json();  
+        })  
+        .then(data => {  
+            if(data && data.cod == 200){
+                blueName = data.bleName
+            }
+        })  
+        .catch(error => {  
+             
+        });
+
         function init(){
             $unlockPage.style.display = "none";
             $bluetoothPage.style.display = "block";
-            // $verifyBtnLoading.style.display = 'none'
-            const inputs = document.querySelectorAll('.code-input');
-            inputs.forEach(input => {
-                input.value = ''
-            })
             $resultDesc.innerText = ''
-            // disconnectDevice()
         }
         init()
         function isIOS() {
@@ -211,8 +240,6 @@
         }
         function supportWebBluetooth() {
             if (navigator.bluetooth && !isIOS()) {
-                // alert('Unable to connect to the Bluetooth device. Please try again using Google Chrome or the default browser on your Samsung phone.');
-                // window.location.href = './download.html?btName=lockly'
                 $unlockPage.style.display = "block";
                 $bluetoothPage.style.display = "none";
                 $unlockSuccess.style.display = 'none'
@@ -222,84 +249,21 @@
             $unlockSuccess.style.display = 'none'
             $stage.style.display = 'none'
             document.querySelector('.connectPage').style.display = 'block'
-            // if(isIOS()){
-            //     $connectDeviceButton.style.display = "none";
-            //     // window.location = './download.html?btName=lockly'
-            // }
             if(getPara('btName')){
                 blueName = getPara('btName')
             }
-            console.log(getPara('btName'))
-            // console.log(navigator.bluetooth ? 'support bluetooth' : 'not support bluetooth')
         }
         
         supportWebBluetooth()
-        // $startApp.addEventListener('click', function() {
-        //     window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
-        // })
         $connectDeviceButton.addEventListener('click', function () {
-            // if(isIOS()){
-            //     window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
-            // }
             window.location.href = 'https://pgep001.lockly.com/access/oac?btName=' + blueName
-            // document.getElementById("unlockPage").style.display = "block";
-            // document.getElementById("bluetoothPage").style.display = "none";
-            // window.location.href = 'https://pgep001.lockly.com/access/oac?btName=1234'
-        });
-        // $backButton.addEventListener('click', function () {
-        //     $unlockPage.style.display = "none";
-        //     $bluetoothPage.style.display = "block";
-        //     const inputs = document.querySelectorAll('.code-input');
-        //     inputs.forEach(input => {
-        //         input.value = ''
-        //     })
-        //     $resultDesc.innerText = ''
-        //     disconnectDevice()
-        // });
-        document.addEventListener('DOMContentLoaded', function () {
-            // 获取所有验证码输入框
-            const inputs = document.querySelectorAll('.code-input');
-
-            // 为每个输入框添加事件监听
-            inputs.forEach((input, idx) => {
-                input.addEventListener('keyup', function (e) {
-                    // 如果当前输入框有值，并且不是最后一个输入框，则跳转到下一个输入框
-                    if (input.value.length === 1) {
-                        const nextInput = inputs[idx + 1];
-                        if (nextInput) {
-                            nextInput.focus();
-                        }
-                    }
-
-                    // 如果按下Backspace键，并且当前输入框无值，则跳转到上一个输入框
-                    if (e.key === 'Backspace' && input.value.length === 0) {
-                        const prevInput = inputs[idx - 1];
-                        if (prevInput) { // 只有非第一个输入框才处理
-                            prevInput.focus();
-                        }
-                    }
-                });
-            });
-
-            // 绑定验证按钮点击事件
-            // $verityButton.addEventListener('click', function () {
-            //     let code = '';
-            //     inputs.forEach(input => {
-            //         code += input.value;
-            //     });
-
-            //     writeOnCharacteristic(getWriteData(code))
-            //     // if (verifyCode(code)) {
-            //     //     // document.getElementById('result').innerText = '验证码正确！';
-            //     //     $unlockSuccess.style.display = 'block'
-            //     //     $checkPassword.style.display = 'none'
-            //     // } else {
-            //     //     $resultDesc.innerText = '验证码错误，请重新输入！';
-            //     // }
-            // });
         });
 
-        // 验证函数
+        function retryAction(){
+            closeDialog()
+            checkPassword()
+        }
+        
         function verifyCode(code) {
             var codePattern = /^\d{4}$/;
             return codePattern.test(code);
