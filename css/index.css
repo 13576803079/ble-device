@@ -395,27 +395,66 @@ html{
     }
 }
 
-.modal {  
+.modal, .dialog-warpper {  
     display: none;  
     position: fixed;  
-    z-index: 1;  
+    z-index: 10;  
     left: 0;  
     top: 0;  
     width: 100%;  
     height: 100%;  
     overflow: auto;  
 }  
+.dialog-warpper{
+    background-color: rgba(0,0,0, 0.3);
+    display: none;
+}
 
 .modal-content {  
     background-color: rgba(0,0,0, 0.7);
     margin: 100% auto 0;
     transform: translateY(-50%);
-    padding: 20px;
+    padding: 0.4rem;
     border-radius: 0.12rem;
     width: 40%;
     color: #ffffff;
     text-align: center;
 }  
+
+.dialog{
+    width: 80%;
+    padding: 0.4rem;
+    border-radius: 0.12rem;
+    margin: 100% auto 0;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+}
+.dialog h2{
+    font-size: 0.32rem;
+    font-weight: 600;
+    padding-top: 0.2rem;
+    padding-bottom: 0.28rem;
+}
+.dialog .errorDesc{
+    font-size: 0.28rem;
+    padding-bottom: 0.32rem;
+    width: 95%;
+}
+.dialog .actionBtn{
+    font-size: 0.28rem;
+    padding-bottom: 0.12rem;
+    color: #62B5E5;
+    text-align: right;
+}
+.dialog .actionBtn span{
+    cursor: pointer;
+    padding: 0.1rem 0;
+}
+.dialog .communicationError .errorDesc, .dialog .connectLost .errorDesc{
+    font-size: 0.3rem;
+    padding-top: 0.2rem;
+    width: 90%;
+}
 
 
 #display-container {
@@ -467,7 +506,6 @@ html{
     border-radius: 50%;
     background-image: url(../img/btn_Keypad.png);
     background-repeat: no-repeat;
-    background-position: center center;
     background-size: cover;
   }
   
