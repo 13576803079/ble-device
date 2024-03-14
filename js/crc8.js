@@ -26,9 +26,8 @@ function addCrc8ToLast(pu8Data) {
     for (let i = 0; i < lenCrc; i++) {
         srr[i] = pu8Data[i];
     }
-    // const crc8 = getCrc8Data(srr);
+    
     const crc8 = getCRC8ByStr(pu8Data)
-    console.log(decimalToHexWithPadding(crc8), crc8)
     pu8Data += decimalToHexWithPadding(crc8);
     return pu8Data
 }
@@ -61,8 +60,5 @@ function getCRC8ByStr(cStr) {
     return getCrc8Data(cShort);
 }
   
-// 示例生成多项式，你可以根据需要修改  
-const POLYNOMIAL = 0xFF;  
+
   
-// 导出函数，以便在HTML中使用  
-// export { crc8, POLYNOMIAL };
