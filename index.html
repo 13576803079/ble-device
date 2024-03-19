@@ -11,7 +11,7 @@
     <script type="text/javascript" src="./js/crc8.js"></script>  
     <script type="text/javascript" src="./js/keyboard1.0.0.js"></script>  
     <script src="./config.js"></script>
-    <script src="http://52.22.176.18:8072/config.js"></script>
+    
 </head>
 
 <body>
@@ -182,37 +182,60 @@
         const $verifyBtnText = document.querySelector('.verifyBtnText')
         const $modal = document.getElementById('myModal')
         let blueName = 'LOCKLYTB000083'
-        
+
         let reqSn = window.location.search
         if(reqSn.includes('?')){
             reqSn = reqSn.split('?')[1]
         }
-        
-        try{
-            fetch(`${ENVCONFIG ? ENVCONFIG.reqUrl : 'http://54.70.166.15:8080/pgsmtlkv2'}/api/getDvInfoByKeypadSn`, {
-                method: 'POST', 
-                headers: {  
-                    'Content-Type': 'application/json',  
-                },  
-                body: JSON.stringify({sn: reqSn}),  
-            })  
-            .then(response => {  
-                if (!response.ok) {  
-                    throw new Error('Network response was not ok');  
-                }  
-                return response.json();  
-            })  
-            .then(data => {  
-                if(data && data.cod == 200){
-                    blueName = data.bleName
-                }
-            })  
-            .catch(error => {  
-                
-            });
-        }catch{
-
+        function getIsRequestBtName(){
+            if(getPara('btName')){
+                blueName = getPara('btName')
+            }else{
+                $modal.style.display = 'block'
+                $verifyBtnText.innerText = 'Loading...'
+                requestBtName()
+            }
         }
+        getIsRequestBtName()
+
+        function requestError(){
+            $verifyBtnLoading.style.display = 'none'
+            $verifyBtnText.innerText = 'Request Error'
+            $connectDeviceButton.classList.add('disabledButton')
+        }
+        
+        function requestBtName(){
+            try{
+                fetch(`${ENVCONFIG ? ENVCONFIG.reqUrl : 'http://54.70.166.15:8080/pgsmtlkv2'}/api/getDvInfoByKeypadSn`, {
+                    method: 'POST', 
+                    headers: {  
+                        'Content-Type': 'application/json',  
+                    },  
+                    body: JSON.stringify({sn: reqSn}),  
+                })  
+                .then(response => {  
+                    if (!response.ok) {  
+                        throw new Error('Network response was not ok');  
+                    }  
+                    return response.json();  
+                })  
+                .then(data => {  
+                    
+                    if(data && data.cod == 200){
+                        $modal.style.display = 'none'
+                        blueName = data.bleName
+                    }else{
+                        requestError()
+                    }
+                })  
+                .catch(error => {  
+                    requestError()
+                });
+            }catch{
+                requestError()
+            }
+        }
+        
         
 
         function init(){
@@ -241,9 +264,7 @@
             $unlockSuccess.style.display = 'none'
             $stage.style.display = 'none'
             document.querySelector('.connectPage').style.display = 'block'
-            if(getPara('btName')){
-                blueName = getPara('btName')
-            }
+            
         }
         
         supportWebBluetooth()
