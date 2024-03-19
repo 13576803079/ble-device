@@ -1,0 +1,453 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display: block
+}
+
+ol,ul {
+    list-style: none
+}
+
+blockquote,q {
+    quotes: none
+}
+
+blockquote:before,blockquote:after,q:before,q:after {
+    content: '';
+    content: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+body {
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    font-family: STHeiti,Helvetica,HelveticaNeue,Droidsansfallback,Droid Sans,Dengxian,Segoe;
+	background-color:#ffffff;
+}
+
+img {
+    border: none
+}
+
+input,select,textarea,button {
+    outline: none;
+    border: none;
+    background: none
+}
+
+textarea {
+    resize: none
+}
+/*
+a {
+    text-decoration: none;
+    color: #656565
+}
+*/
+
+.app_url{
+	color: blue
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.clearfix {
+    zoom:1;clear: both
+}
+
+.tc {
+    text-align: center
+}
+
+.tr {
+    text-align: right
+}
+
+.tl {
+    text-align: left
+}
+
+.wrapper {
+    width: 7.5rem;
+    height: 19.47rem;
+    margin: auto;
+    background: url(../img/beijing@2x.png) no-repeat center;
+    background-size: 7.5rem 19.83rem;
+    font-size: 14px;
+    padding-top: .36rem
+}
+
+.wrappera {
+    width: 7.5rem;
+    height: 13.47rem;
+    margin: auto;
+    background: url(../img/bk_layer_l.png) no-repeat top;
+    background-size: 7.5rem 3.6rem;
+    font-size: 14px;
+    padding-top: .36rem;
+    background-color: #fff;
+}
+
+.wrapperb {
+    width: 7.5rem;
+    height: 13.47rem;
+    margin: auto;
+    background: url(../img/bk_layer_ld.png) no-repeat top;
+    background-size: 7.5rem 6.23rem;
+    font-size: 14px;
+    padding-top: .36rem;
+    background-color: #fff;
+}
+
+.code {
+    width: 5.54rem;
+    height: 1.58rem;
+    background-color: #fff;
+    margin: auto;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem
+}
+
+.code h1 {
+    font-size: .3rem;
+    color: #157df5;
+    height: .54rem;
+    line-height: .54rem;
+    border-bottom: 1px dashed #c3c3c3;
+    padding-left: .2rem;
+    font-weight: normal
+}
+
+.download_btn {
+    display: block;
+    width: 5.8rem;
+    height: 1.1rem;
+    background: url(../img/dl_lockly.png) center no-repeat;
+    background-size: cover;
+    margin: auto
+}
+
+.code .num {
+    font-size: .5rem;
+    color: #157df5;
+    padding-top: .25rem;
+    font-weight: bold;
+}
+
+.deadline {
+    font-size: .2rem;
+    color: #fff;
+	margin: .15rem 1rem .24rem 1rem
+}
+
+.copyEbadge{
+    font-size: 0.27rem;
+    display: block;
+    width: 2.5rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    color: #000;
+    border-radius: 4px;
+    background-color: #A9D0FE;
+    text-decoration: none;
+    text-align: center;
+    margin: auto;
+    box-shadow: 0 1px 4px 0 rgba(68,68,68,0.42)
+}
+
+.desc {
+    font-size: .46rem;
+    color: #4f4f4f;
+    line-height: .2rem;
+	margin-top: 0.54rem;
+}
+
+figure {
+    width: 6.86rem;
+    height: 7.14rem;
+    margin: 0 auto .6rem
+}
+
+figure img {
+    width: 6.86rem;
+    height: 7.14rem
+}
+
+.desc_list {
+    width: 7.14rem
+}
+
+.desc_list li {
+    font-size: .28rem;
+    color: #5e5b5c;
+    /* float: left; */
+	margin-top: .24rem;
+    overflow: hidden;
+    /* margin-bottom: .14rem; */
+    padding-left: .35rem;
+    /* text-indent: -0.5rem; */
+}
+
+.desc_list li .gou_icon {
+    vertical-align: -3px;
+    margin-right: .1rem
+}
+/*
+.desc_list li:first-child {
+    width: 100%
+}
+
+.desc_list li:last-child {
+    text-indent: .43rem
+}
+*/
+.fc_bg {
+    background-color: #fff;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+    margin: auto;
+    opacity: .9
+}
+
+.fc_introduction {
+    width: 7.2rem;
+    /* height: 2.4rem; */
+    margin: 3.6rem auto .4rem;
+}
+
+.fc_introduction p {
+    font-size: .28rem;
+    color: #fff;
+    line-height: .55rem;
+    padding: .2rem
+}
+
+.fc_note {
+    width: 6.8rem;
+    height: 1.8rem;
+    margin-bottom: 0.6rem;
+    color: #5e5b5c;
+}
+
+.fc_note p {
+    font-size: .28rem;
+    color: #5e5b5c;
+    line-height: .28rem;
+    padding-top: .2rem;
+    padding-left: .3rem;
+}
+.fc_note div {
+    font-size: .28rem;
+    line-height: .32rem;
+    padding: 0.08rem 0.2rem 0 0.3rem;
+}
+
+.footer {
+    position: fixed;
+	left: auto;
+    right: auto;
+    bottom: 0;
+    width: 7.5rem;
+    height: 1.11rem;
+    background-size: contain;    
+    background-color: #f6f6f6	
+}
+
+.footer .Download_txt {
+    font-size: .3rem;
+    color: #000;
+    margin-top: .46rem
+}
+
+.footer a {
+    display: block;
+    text-indent: 9999
+}
+
+.gou_icon {
+    display: inline-block;
+    width: .36rem;
+    height: .36rem;
+    background: url(../img/gou.png) center no-repeat;
+    background-size: contain
+}
+.fl{
+    float: left;
+}
+
+.desc_list li i{
+    float: left;
+    font-style: normal;
+    margin-top: 0.03rem;
+}
+
+.desc_list li .guide_icon_one {
+    /* vertical-align: -7px; */
+    margin-right: .1rem
+}
+
+.desc_list li .guide_icon_two {
+    /* vertical-align: -7px; */
+    margin-right: .1rem
+}
+
+.desc_list li .guide_icon_three {
+    /* vertical-align: -7px; */
+    margin-right: .1rem
+}
+.guide_icon_box{
+    width: .28rem;
+    height: .28rem;
+    font-size: 0.24rem;
+    line-height: 0.3rem;
+    text-align: center;
+    background-color: rgb(44, 138, 246);
+    color: rgb(226, 235, 252);
+    border-radius: 50%;
+    margin-right: .14rem;
+    margin-left: 0.08rem;
+    margin-top: 0.03rem;
+}
+.guide_icon_one {
+    display: inline-block;
+    width: .42rem;
+    height: .42rem;
+    background: url(../img/blue_one.png) left no-repeat;
+    background-size: contain
+}
+
+.guide_icon_two {
+    display: inline-block;
+    width: .42rem;
+    height: .42rem;
+    background: url(../img/blue_two.png) left no-repeat;
+    background-size: contain
+}
+
+.guide_icon_three {
+    display: inline-block;
+    width: .42rem;
+    height: .42rem;
+    background: url(../img/blue_three.png) left no-repeat;
+    background-size: contain
+}
+
+.desc_list li .note_icon_one {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+
+.desc_list li .note_icon_two {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+
+.desc_list li .guide_icon_three {
+    vertical-align: -5px;
+    margin-right: .1rem
+}
+.open_app{
+    width: 7.2rem;
+    margin: auto;
+}
+.open_app p{
+    padding-left: 0.8rem;
+    padding-right: 0.4rem;
+    color: #5e5b5c;
+    font-size: .28rem;
+    margin-bottom: 0.3rem;
+}
+.note_icon_one {
+    display: inline-block;
+    width: .42rem;
+    height: .42rem;
+    background: url(../img/ntone.png) left no-repeat;
+    background-size: contain
+}
+
+.note_icon_two {
+    display: inline-block;
+    width: .42rem;
+    height: .42rem;
+    background: url(../img/nttwo.png) left no-repeat;
+    background-size: contain
+}
+
+.google_btn {
+    display: block;
+    width: 2.74rem;
+    height: .97rem;
+    background: url(../img/Google-Play.png) center no-repeat;
+    background-size: cover;
+    margin: auto
+}
+
+.open_app_btn {
+    display: block;
+    width: 5.6rem;
+    height: 0.72rem;
+    font-size: 0.28rem;
+    line-height: 0.32rem;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #3A7BEE;
+    /* background: url(../img/open_lk_app.png) center no-repeat; */
+    margin: auto;
+}
+
+.buy_btn {
+    display: block;
+    width: 100%;
+	height: 100%;	
+    background: url(../img/buy_banner.png) center no-repeat;
+    background-size: contain;
+    /*margin: auto*/
+}
+
+.wechat_guide{
+    width:100px;
+    height:40px;
+    float: right;
+    background:#000000;
+    position:relative;
+    z-index:100;
+    filter:alpha(Opacity=80);
+    -moz-opacity:0.5;
+    opacity: 0.2;
+}
+
+.app_title {
+font-size: .46rem;
+    color: #157df5;
+    line-height: .2rem;
+    margin-top: 6.6rem;
+}
+
+.app_desc {
+    font-size: .32rem;
+    color: #b1b1b1;
+    line-height: .44rem
+}
+
+.empty_space {
+    font-size: .3rem;
+    height: 1.6rem;
+}
