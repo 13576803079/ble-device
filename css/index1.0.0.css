@@ -78,6 +78,7 @@ body{
 html{
     background: #EFF2F4;
     font-size: 13.34vw;
+    transition: font-size 0.5s ease-in-out;
 }
 #bluetoothPage{
     text-align: center;
