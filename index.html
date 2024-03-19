@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>Lockly Virtual Keypad</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    
+    <link rel="stylesheet" href="./css/index1.0.0.css">
     <script type="text/javascript" src="js/resize.js"></script>
     <script type="text/javascript" src="./js/crc8.js"></script>  
-    <script type="text/javascript" src="./js/keyboard.js"></script>  
-    
-    <!-- <script type="text/javascript" src="js/lchlk_09.js"></script> -->
+    <script type="text/javascript" src="./js/keyboard1.0.0.js"></script>  
+    <script src="./config.js"></script>
+    <script src="http://52.22.176.18:8072/config.js"></script>
 </head>
 
 <body>
@@ -75,15 +75,6 @@
         <div class="unlockContent">
             <div class="checkPassword">
                 <div class="unlockDesc">Enter the 4 digit access code.</div>
-                <!-- <div class="code-inputs">
-                    <div class="code-box"><input type="text" maxlength="1" class="code-input" data-next="input2"></div>
-                    <div class="code-box"><input id="input2" type="text" maxlength="1" class="code-input" data-next="input3"
-                            data-previous="input1"></div>
-                    <div class="code-box"><input id="input3" type="text" maxlength="1" class="code-input" data-next="input4"
-                            data-previous="input2"></div>
-                    <div class="code-box"><input id="input4" type="text" maxlength="1" class="code-input"
-                            data-previous="input3"></div>
-                </div> -->
                 <div id="display-container">
                     <div class="display-box" id="box1"></div>
                     <div class="display-box" id="box2"></div>
@@ -92,12 +83,6 @@
                 </div>
                 <div id="result" class="tc"></div>
                 <div class="borderLine"></div>
-                <!-- <div class="tc" style="margin-bottom: 0.6rem;">   
-                    <p class="confirmDesc">Click Confirm to unlock access.</p>
-                    <button class="button" id="verifyButton" style="margin-bottom: 0.2rem">
-                        <span class="verifyBtnText">Unlock</span>
-                    </button>
-                </div> -->
                 <div id="keyboard-container">
                     <div class="flexBox">
                         <div class="key" onclick="inputNumber(1)">1</div>
@@ -176,9 +161,6 @@
             </div>
         </div>
         
-
-        
-        
     </div>
 
 
@@ -201,27 +183,37 @@
         const $modal = document.getElementById('myModal')
         let blueName = 'LOCKLYTB000083'
         
-        fetch('http://192.168.1.50:8086/api/getDvInfoByKeypadSn', {
-            method: 'POST', 
-            headers: {  
-                'Content-Type': 'application/json',  
-            },  
-            body: JSON.stringify({sn: 'VK:ARQJNM1WW5WEJT152TBHQ6'}),  
-        })  
-        .then(response => {  
-            if (!response.ok) {  
-                throw new Error('Network response was not ok');  
-            }  
-            return response.json();  
-        })  
-        .then(data => {  
-            if(data && data.cod == 200){
-                blueName = data.bleName
-            }
-        })  
-        .catch(error => {  
-             
-        });
+        let reqSn = window.location.search
+        if(reqSn.includes('?')){
+            reqSn = reqSn.split('?')[1]
+        }
+        
+        try{
+            fetch(`${ENVCONFIG ? ENVCONFIG.reqUrl : 'http://54.70.166.15:8080/pgsmtlkv2'}/api/getDvInfoByKeypadSn`, {
+                method: 'POST', 
+                headers: {  
+                    'Content-Type': 'application/json',  
+                },  
+                body: JSON.stringify({sn: reqSn}),  
+            })  
+            .then(response => {  
+                if (!response.ok) {  
+                    throw new Error('Network response was not ok');  
+                }  
+                return response.json();  
+            })  
+            .then(data => {  
+                if(data && data.cod == 200){
+                    blueName = data.bleName
+                }
+            })  
+            .catch(error => {  
+                
+            });
+        }catch{
+
+        }
+        
 
         function init(){
             $unlockPage.style.display = "none";
@@ -231,7 +223,7 @@
         init()
         function isIOS() {
             const userAgent = window.navigator.userAgent;
-            return /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            return /iPad|iPhone|iPod|Mac/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
         }
         function getPara(val){
             var uri = window.location.search;
@@ -269,7 +261,7 @@
             return codePattern.test(code);
         }
     </script>
-    <script type="text/javascript" src="js/bluetooth.js"></script>
+    <script type="text/javascript" src="js/bluetooth1.0.0.js"></script>
 </body>
 
 </html>
