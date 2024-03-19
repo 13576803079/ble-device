@@ -16,5 +16,16 @@ function getOacPassword(){
     })
 }
 
+function setUnlockHref(){
+    let $url = document.querySelector('.unlock-tip a')
+    let btName = ''
+    if(getPara('bn')){
+        btName = getPara('bn')
+        $url.href = `https://13576803079.github.io/ble-device?btName=${btName}`
+        $url.innerText = `https://13576803079.github.io/ble-device?btName=${btName}`
+    }
+    
+}
 
 getOacPassword()
+setUnlockHref()
