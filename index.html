@@ -190,10 +190,6 @@
         function getIsRequestBtName(){
             if(getPara('btName')){
                 blueName = getPara('btName')
-            }else{
-                $modal.style.display = 'block'
-                $verifyBtnText.innerText = 'Loading...'
-                requestBtName()
             }
         }
         getIsRequestBtName()
