@@ -142,11 +142,16 @@
         </div>
         <div class="sc-gKXOVf sc-ciZhAO kwUiuA hywa-Dz">Success</div>
         <div class="sc-hHLeRK sc-jdAMXn iyxiTn ebLkht">Your account has been successfully connected to yuan jerry!</div>
-        <button class="sc-jSMfEi sc-cCsOjp bwebRg piYDj closeBtn" onclick="window.close()">Close</button>
+        <button class="sc-jSMfEi sc-cCsOjp bwebRg piYDj closeBtn" onclick="closeWindow()">Close</button>
       </div>
     
     <script>
-      
+      function closeWindow() {
+        window.close();
+        if (window.opener) {
+          window.opener.postMessage("closeSeamWindow", "*");
+        }
+      }
     </script>
     <style>
       body {
