@@ -158,12 +158,11 @@
         }catch{
 
         }
-        console.log(`closeSeamWindow,${window.location.search.split('=')[1]}`, window.opener)
         if (window.opener) {
           window.opener.postMessage(JSON.stringify({
             type: 'closeSeamWindow',
-            uuid: getPara(uuid),
-            connect_webview_id: getPara(connect_webview_id),
+            uuid: getPara('uuid'),
+            connect_webview_id: getPara('connect_webview_id'),
           }), "*");
         }
       }
