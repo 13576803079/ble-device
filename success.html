@@ -149,7 +149,7 @@
       function closeWindow() {
         window.close();
         if (window.opener) {
-          window.opener.postMessage("closeSeamWindow", "*");
+          window.opener.postMessage(`closeSeamWindow,${window.location.search.split('=')[1]}`, "*");
         }
       }
     </script>
