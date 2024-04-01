@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Seam Connect</title>
+    <style>
+      #display-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 650px;
+        width: 360px;
+        padding: 96px 24px 16px;
+        box-sizing: border-box;
+        font-family: "Source Sans Pro", sans-serif;
+        margin: 0 auto;
+      }
+      .cHsEkE {
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+      }
+      .bWEALF {
+          text-align: center;
+      }
+      .esyqIj {
+          height: 24px;
+      }
+      .ihZlpI {
+          padding-top: 20px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          -webkit-box-flex: 1;
+          flex-grow: 1;
+      }
+      .hywa-Dz {
+        margin: 40px 0px;
+        font-family: "Source Sans Pro";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        color: rgb(39, 39, 46);
+        text-align: center;
+      }
+      .kwUiuA {
+        line-height: 140%;
+      }
+      .iyxiTn {
+          font-size: 16px;
+          text-align: left;
+          line-height: 140%;
+          color: rgb(66, 84, 102);
+      }
+      .ebLkht {
+          margin-bottom: 16px;
+          text-align: center;
+      }
+      .piYDj {
+          margin-top: 150px;
+          width: 100%;
+      }
+      .bwebRg {
+          text-decoration: none;
+          border: 0px;
+          border-radius: 8px;
+          padding: 13px;
+          font-size: 18px;
+          font-family: "Source Sans Pro", sans-serif;
+          font-weight: 500;
+          cursor: pointer;
+          margin-top: 24px;
+          background: rgb(39, 39, 46);
+          color: rgb(255, 255, 255);
+      }
+
+      .display-box {
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        font-size: 24px;
+      }
+
+      #keyboard-container {
+        text-align: center;
+      }
+
+      .flexBox {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 280px;
+        margin: 0 auto;
+      }
+
+      .key,
+      .confirmBtn,
+      .deleteBtn {
+        width: 70px;
+        height: 70px;
+        margin: 5px;
+        font-size: 24px;
+        cursor: pointer;
+        line-height: 70px;
+        user-select: none;
+        border-radius: 50%;
+        background-image: url(./btn_Keypad.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+
+      .confirmBtn img {
+        padding-top: 16px;
+        width: 30px;
+        height: 30px;
+      }
+
+      .deleteBtn {
+        background-image: url(./deleteBtn.png);
+      }
+
+      .key:active {
+        background-color: #ddd;
+      }
+
+      .filled {
+        background-color: #add8e6; /* 浅蓝色表示有数据 */
+      }
+      .disabled {
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="display-container">
+      <div class="sc-kTvvXX bWEALF"><img src="https://seam-connect-webview.vercel.app/assets/seam-logo-black.svg" class="sc-dvwKko esyqIj"></div>
+      <div class="sc-iBkjds ihZlpI">
+        <div class="sc-himrzO cHsEkE"><svg fill="none" height="80" viewBox="0 0 80 80" width="80"><filter id="a" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="84" width="84" x="-2" y="-2"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feGaussianBlur in="BackgroundImageFix" stdDeviation="1"></feGaussianBlur><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_1988_4469"></feComposite><feBlend in="SourceGraphic" in2="effect1_backgroundBlur_1988_4469" mode="normal" result="shape"></feBlend></filter><g filter="url(#a)"><circle cx="40" cy="40" fill="#deffee" fill-opacity=".7" r="40"></circle><circle cx="40" cy="40" r="39.5" stroke="#66cb9f"></circle></g><path clip-rule="evenodd" d="m52.8563 28.3449c1.3483-1.1265 3.5342-1.1265 4.8825 0 1.3317 1.1127 1.3481 2.9082.049 4.0377l-18.377 19.1933c-.0266.0277-.0549.0541-.0849.0792-1.3483 1.1265-3.5342 1.1265-4.8825 0l-12.1822-10.1786c-1.3483-1.1265-1.3483-2.953 0-4.0795 1.3482-1.1265 3.5342-1.1265 4.8825 0l9.6369 8.052 15.9842-17.0178c.0284-.0303.059-.0591.0915-.0863z" fill="#4aae8c" fill-rule="evenodd"></path></svg>
+        </div>
+        <div class="sc-gKXOVf sc-ciZhAO kwUiuA hywa-Dz">Success</div>
+        <div class="sc-hHLeRK sc-jdAMXn iyxiTn ebLkht">Your account has been successfully connected to yuan jerry!</div>
+        <button class="sc-jSMfEi sc-cCsOjp bwebRg piYDj closeBtn" onclick="window.close()">Close</button>
+      </div>
+    
+    <script>
+      
+    </script>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+          "Droid Sans", "Helvetica Neue", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: white;
+        font-weight: 400;
+      }
+
+      code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+          monospace;
+      }
+
+      a:link {
+        color: inherit;
+      }
+
+      a:active {
+        color: inherit;
+      }
+
+      a:visited {
+        color: inherit;
+      }
+
+      a:hover {
+        color: inherit;
+      }
+    </style>
+  </body>
+</html>
